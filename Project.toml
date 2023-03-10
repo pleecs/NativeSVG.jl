@@ -1,4 +1,4 @@
 name = "NativeSVG"
 uuid = "e0ae6c8d-2d3a-402f-a45e-2aac098fa7eb"
 authors = ["Wiktor Łodyga <wiktor.lodyga.dokt@pw.edu.pl>"]
-version = "0.1.1"
+version = "0.1.2"

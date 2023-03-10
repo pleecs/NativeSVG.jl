@@ -10,25 +10,6 @@ function Base.show(io::IO, svg::NativeSVG.SVG)
     write(io, String(copy(svg.data)))
 end
 
-function Base.show(io::IO, ::MIME"text/plain", svg::NativeSVG.SVG)
-    (isdefined(Main, :IJulia) && Main.IJulia.inited ||
-     isdefined(Main, :Juno) && Main.Juno.isactive()) && return
-    filename = "nativesvg.svg"
-    open(filename, "w") do io
-        write(io, svg.data)
-    end
-
-    if Sys.isapple()
-        run(`open $(filename)`)
-    elseif Sys.iswindows()
-        cmd = get(ENV, "COMSPEC", "cmd")
-        run(`$(ENV["COMSPEC"]) /c start $(filename)`)
-    elseif Sys.isunix()
-        run(`xdg-open $(filename)`)
-    end
-    return filename
-end
-
 function Base.show(io::IO, ::MIME"image/svg+xml", svg::NativeSVG.SVG)
     write(io, svg.data)
 end
